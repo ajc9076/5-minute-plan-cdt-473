@@ -6,8 +6,8 @@ mkdir /var/backups
 
 # Passwords
 echo "Changing passwords for root and localguard"
-echo -e "M!n3craft_P@$$word\nM!n3craft_P@$$word" | passwd root
-echo -e "M!n3craft_P@$$word\nM!n3craft_P@$$word" | passwd localguard
+passwd root
+passwd localguard
 echo "Disabling root"
 passwd -l root
 usermod -s /sbin/no-login root
