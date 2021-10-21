@@ -138,5 +138,6 @@ echo "MAKE ALL THE BACKUPS RIGHT NOW: /var/backups"
 echo "backup minecraft configs, home directories, etc."
 
 echo "This script has also cleared bash history"
+mkdir /var/backups/nope
 history > /var/backups/nope/not-the-history-file-lol
 history -c
