@@ -12,6 +12,12 @@ echo "REMEMBER TO CHECK MANUALLY FOR OTHER USERS AND CHANGE ALL USER'S PASSWORDS
 
 
 # Firewall (basic setup)
+echo "Stopping firewalld and installing persistant iptables"
+systemctl stop firewalld
+systemctl disable firewalld
+yum install iptables-services
+systemctl enable iptables
+# save a copy of the original firewall
 iptables-save > /var/backups/iptables-original
 echo "Flushing and resetting firewall"
 iptables -F INPUT
@@ -47,8 +53,6 @@ iptables -A OUTPUT -p TCP --dport 20 -d 10.10.3.200 -j ACCEPT
 echo "Backing up iptables"
 iptables-save > /etc/sysconfig/iptables
 iptables-save > /var/backups/iptables
-chkconfig iptables on
-service iptables save 
 
 
 # SSH Hardening (recreate config from scratch)
@@ -78,8 +82,7 @@ echo "PermitUserEnvironment no" >> /etc/ssh/sshd_config
 echo "AllowAgentForwarding no" >> /etc/ssh/sshd_config
 echo "AllowTcpForwarding no" >> /etc/ssh/sshd_config
 echo "PermitTunnel no" >> /etc/ssh/sshd_config
-echo "DebianBanner no" >> /etc/ssh/sshd_config
-echo "PubkeyAuthorization no" >> /etc/ssh/sshd_config
+echo "PubkeyAuthentication no" >> /etc/ssh/sshd_config
 # backup with changes
 cp /etc/ssh/sshd_config /var/backups/sshd_config_hardened
 # reload
