@@ -15,7 +15,7 @@ echo "REMEMBER TO CHECK MANUALLY FOR OTHER USERS AND CHANGE ALL USER'S PASSWORDS
 echo "Stopping firewalld and installing persistant iptables"
 systemctl stop firewalld
 systemctl disable firewalld
-yum install iptables-services
+yum -y install iptables-services
 systemctl enable iptables
 # save a copy of the original firewall
 iptables-save > /var/backups/iptables-original
