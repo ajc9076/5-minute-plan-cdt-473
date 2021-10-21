@@ -5,13 +5,10 @@ echo "Starting 5 minute plan script..."
 mkdir /var/backups
 
 # Passwords
-echo "Changing passwords for root and localguard"
-passwd root
-passwd localguard
 echo "Disabling root"
 passwd -l root
 usermod -s /sbin/no-login root
-echo "REMEMBER TO CHECK MANUALLY FOR OTHER USERS"
+echo "REMEMBER TO CHECK MANUALLY FOR OTHER USERS AND CHANGE ALL USER'S PASSWORDS"
 
 
 # Firewall (basic setup)
